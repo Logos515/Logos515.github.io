@@ -1,0 +1,12 @@
+// 修改首页 post 标题的超链接样式
+.archive__item-title a {
+    color: #000; // 默认黑色
+    text-decoration: none; // 默认不带下划线
+    text-transform: capitalize; // 每个单词首字母大写
+
+    &:hover {
+      font-weight: bold; // 悬停时加粗
+      color: #000; // 悬停时依然是黑色
+      text-decoration: underline; // 悬停时也不带下划线
+    }
+}
