@@ -1,1 +1,0 @@
-I'm not especially pleased with my current solution, but it simply works as a way to "override" variables in my current Angular implementation of Bootstrap 4.

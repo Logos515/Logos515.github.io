@@ -10,3 +10,7 @@
       text-decoration: underline; // 悬停时也不带下划线
     }
 }
+
+.page__title {
+    text-transform: capitalize; // 每个单词首字母大写
+}

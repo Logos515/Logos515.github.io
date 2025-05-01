@@ -173,7 +173,23 @@
       <section id="utterances-comments"></section>
     {% when "giscus" %}
       <h4 class="page__comments-title">{{ comments_label }}</h4>
-      <section id="giscus-comments"></section>
+      <section id="giscus-comments">
+        <script src="https://giscus.app/client.js"
+                data-repo="Logos515/Logos515.github.io"
+                data-repo-id="R_kgDOOiZ91g"
+                data-category="General"
+                data-category-id="DIC_kwDOOiZ91s4CpqdO"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="bottom"
+                data-theme="preferred_color_scheme"
+                data-lang="zh-CN"
+                crossorigin="anonymous"
+                async>
+        </script>
+      </section>
     {% when "custom" %}
       {% include /comments-providers/custom.html %}
   {% endcase %}
