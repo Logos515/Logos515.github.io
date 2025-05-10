@@ -1,5 +1,5 @@
 ---
-title: "Python指北"
+title: "Python+Pytorch指北"
 layout: single
 date: 2025-05-09
 toc: true
