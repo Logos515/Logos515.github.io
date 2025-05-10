@@ -112,3 +112,25 @@ pytorch的这个设计的好处在于：
 - 类只是定义了行为（方法、接口），具体的数据和配置是在每个实例中分开存储的。
 
 如果类直接挂 `_modules`，那所有实例就会共享一份，很容易出错。这是pytorch的核心设计哦！
+
+## named_parameters vs state_dict
+
+当我们需要查看模型的内部参数的时候，经常会用到这两个属性，其父类是 `nn.Module`，然而这两个属性是有区别的：
+
+- named_parameters
+
+返回模型中所有可学习参数 `nn.Parameter`，以 `(name, parameter)` 的形式迭代（通常是权重和偏置）。
+
+常用场景：当需要把模型的参数传入到优化器中时常使用，如 `optimizer = torch.optim.Adam(model.parameters())`
+
+> 这里传入的是 `model.parameters()` 是因为其不含有参数的名称 `name`
+
+- state_dict
+
+返回模型中所有 参数 + 缓冲区（包括 `nn.Parameter` 和注册的 buffer，比如 BatchNorm 中的 running_mean、running_var），以 `{name: tensor}` 的形式组成的 `OrderedDict`。
+
+它是模型保存和加载的核心接口：
+
+- 保存模型：`torch.save(model.state_dict(), 'model.pth')`
+- 加载模型：`model.load_state_dict(torch.load('model.pth'))`
+
