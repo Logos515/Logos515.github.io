@@ -167,7 +167,7 @@ pytorch的这个设计的好处在于：
 
 加载方式如下：
 
-```
+```python
 model = MyModel(*args)
 model.load_state_dict(torch.load("xxx.pth"))
 ```
