@@ -93,6 +93,8 @@ H_t = \phi(X_t W_{xh} + H_{t-1} W_{hh} + b_h) \\
 O_t = H_tW_{hq} + b_q
 $$
 
+> 对于为什么是这样的形式，或许是参考了状态空间模型。（挖坑ing
+
 在评估模型时，我们使用 **困惑度（Perplexity）** 作为指标，其定义如下：
 
 $$\text{exp}\big(-\frac{1}{n}\sum\limits_{t=1}^{n}\log P(x_t|x_{t-1},...,x_1)\big) \tag{3}$$
