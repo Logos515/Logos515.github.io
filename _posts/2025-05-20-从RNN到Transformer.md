@@ -183,13 +183,16 @@ LSTM 是 RNN 的改进方案，其使用了多个门控网络来对长期的记�
 
 图 4 描绘了 LSTM 中记忆和隐状态传递的逻辑，其可用下面的几个公式描述：
 
+
 $$
+\begin{split}\begin{aligned}
 F_t=\sigma(H_{t-1}W_{hf}+X_{t}W_{xf}+b_f) \\
-I_t=\sigma(H_{t-1}W_{hi}+X_{t}W_{xi}+b_i) \\
-O_t=\sigma(H_{t-1}W_{ho}+X_{t}W_{xo}+b_o) \\
-\tilde C_t = \tanh(H_{t-1}W_{hc}+X_{t}W_{xc}+b_c) \\
-C_t = F_t \odot C_{t-1} + I_t \odot \tilde C_t \\
+I_t=\sigma(H_{t-1}W_{hi}+X_{t}W_{xi}+b_i)\\
+O_t=\sigma(H_{t-1}W_{ho}+X_{t}W_{xo}+b_o)\\
+\tilde C_t = \tanh(H_{t-1}W_{hc}+X_{t}W_{xc}+b_c)\\
+C_t = F_t \odot C_{t-1} + I_t \odot \tilde C_t\\
 H_t = O_t \odot \tanh(C_t)
+\end{aligned}\end{split}
 $$
 
 和 RNN 一样，LSTM 也需要初始化状态和记忆。代码部分就不贴了，和 RNN 几乎一样，区别在于其输出的状态有两个。
@@ -207,10 +210,12 @@ GRU 可视为 LSTM 的精简版本，其只使用两个门控网络：重置门�
 其原理可以用下面的公式表示：
 
 $$
+\begin{split}\begin{aligned}
 R_t=\sigma(H_{t-1}W_{hr}+X_{t}W_{xr}+b_r) \\
 Z_t=\sigma(H_{t-1}W_{hz}+X_{t}W_{xz}+b_z) \\
 \tilde H_t = \tanh((R_t \odot H_{t-1})W_{hh} + X_{t}W_{xh} + b_h) \\
 H_t = Z_t \odot H_{t-1} + (1-Z_t) \odot \tilde H_t
+\end{aligned}\end{split}
 $$
 
 ### LSTM vs GRU
