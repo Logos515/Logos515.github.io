@@ -11,7 +11,7 @@ tags: ["Survey", "DeepLearning"]
 这篇博客是我在学习了李沐大神的《动手学深度学习（中文版）》的第八章循环神经网络，第九章现代循环神经网络，第十章注意力机制之后写就的，预期会结合自己对 RNN 和 Attention 的理解讨论神经网络是如何从 RNN 发展到 Transformer 的。
 
 <div align="center">
-  <img src="/assets/images/5.20/月を歩いている.jpg" width="300">
+  <img src="/assets/images/2025/5.20/月を歩いている.jpg" width="300">
   <figcaption>月を歩いている — n-buna</figcaption>
   <p></p>
 </div>
@@ -42,7 +42,7 @@ $$
 其大体的框架如下图所示：
 
 <div align="center">
-  <img src="/assets/images/5.20/sequence-model.svg" width="400">
+  <img src="/assets/images/2025/5.20/sequence-model.svg" width="400">
   <figcaption>图 1 隐变量自回归模型</figcaption>
   <p></p>
 </div>
@@ -81,7 +81,7 @@ $$P(x_1,...,x_T) = \prod\limits_{t=1}^{T}P(x_t|x_{t-1},...,x_1) \tag{2}$$
 所以我们下面考虑有隐状态的循环神经网络：
 
 <div align="center">
-  <img src="/assets/images/5.20/rnn-train.svg" width="500">
+  <img src="/assets/images/2025/5.20/rnn-train.svg" width="500">
   <figcaption>图 2 基于循环神经网络的字符级语言模型</figcaption>
   <p></p>
 </div>
@@ -152,7 +152,7 @@ $$\frac{\partial h_t}{\partial w_h} = \frac{\partial f(x_t,h_{t-1},w_h)}{\partia
 - 几种方法的比较
 
 <div align="center">
-  <img src="/assets/images/5.20/truncated-bptt.svg" width="500">
+  <img src="/assets/images/2025/5.20/truncated-bptt.svg" width="500">
   <figcaption>图 3 比较RNN中计算梯度的策略，3行自上而下分别为：随机截断、常规截断、完整计算</figcaption>
   <p></p>
 </div>
@@ -176,7 +176,7 @@ $$\frac{\partial h_t}{\partial w_h} = \frac{\partial f(x_t,h_{t-1},w_h)}{\partia
 ### 长短期记忆网络（LSTM）
 
 <div align="center">
-  <img src="/assets/images/5.20/lstm-3.svg" width="500">
+  <img src="/assets/images/2025/5.20/lstm-3.svg" width="500">
   <figcaption>图 4 在长短期记忆模型中计算隐状态</figcaption>
   <p></p>
 </div>
@@ -204,7 +204,7 @@ $$
 GRU 可视为 LSTM 的精简版本，其只使用两个门控网络：重置门和更新门，其结构如下图所示：
 
 <div align="center">
-  <img src="/assets/images/5.20/gru-3.svg" width="500">
+  <img src="/assets/images/2025/5.20/gru-3.svg" width="500">
   <figcaption>图 5 计算门控循环单元模型中的隐状态</figcaption>
   <p></p>
 </div>
@@ -237,7 +237,7 @@ LSTM 和 GRU 有各自的优缺点，可从下表中看出。
 ## 序列到序列学习（seq2seq）
 
 <div align="center">
-  <img src="/assets/images/5.20/seq2seq.svg" width="500">
+  <img src="/assets/images/2025/5.20/seq2seq.svg" width="500">
   <figcaption>图 6 使用循环神经网络编码器和循环神经网络解码器的序列到序列学习</figcaption>
   <p></p>
 </div>
@@ -279,7 +279,7 @@ $$\begin{split}\begin{aligned} f(x) &=\sum_{i=1}^n \alpha(x, x_i) y_i\\ &= \sum_
 我们把最后 softmax 得到的系数称之为**注意力权重**，如果我们把注意力权重进行热力图可视化的话，其看上去会是下面这样：
 
 <div align="center">
-  <img src="/assets/images/5.20/output_nadaraya-waston.svg" width="300">
+  <img src="/assets/images/2025/5.20/output_nadaraya-waston.svg" width="300">
   <figcaption>图 7 注意力权重热力图（不含参）</figcaption>
   <p></p>
 </div>
@@ -293,7 +293,7 @@ $$\begin{split}\begin{aligned}f(x) &= \sum_{i=1}^n \alpha(x, x_i) y_i \\&= \sum_
 在高斯核的指数部分乘上一个系数 w，这么做的好处其实是很容易理解的。如果 w 是个很小的值，那么我们就越关注更远的点，相当于**增加注意力的范围**；如果 w 是比较大的值，那么我们就更加关注距离更近的点，**让注意力更加尖锐**。
 
 <div align="center">
-  <img src="/assets/images/5.20/output_nadaraya-waston_pa.svg" width="300">
+  <img src="/assets/images/2025/5.20/output_nadaraya-waston_pa.svg" width="300">
   <figcaption>图 8 注意力权重热力图（含参）</figcaption>
   <p></p>
 </div>
@@ -345,7 +345,7 @@ $$ \mathrm{softmax}\left(\frac{\mathbf Q \mathbf K^\top }{\sqrt{d}}\right) \math
 前面的 seq2seq 模型中，我们使用的是编码器-解码器架构，使用上下文向量来辅助输出，现在，为了能够增强上下文向量的表达能力，我们引入注意力机制，这种注意力被称为**Bahdanau 注意力**，下图描述了其架构。
 
 <div align="center">
-  <img src="/assets/images/5.20/seq2seq-attention-details.svg" width="500">
+  <img src="/assets/images/2025/5.20/seq2seq-attention-details.svg" width="500">
   <figcaption>图 9 一个带有Bahdanau注意力的循环神经网络编码器-解码器模型</figcaption>
   <p></p>
 </div>
@@ -361,7 +361,7 @@ $$\mathbf{c}_{t'} = \sum_{t=1}^T \alpha(\mathbf{s}_{t' - 1}, \mathbf{h}_t) \math
 所谓多头注意力，表面上看是将多个不同注意力的结果进行拼接，实际写代码的时候只要进行一些简单的维度变化就可以了。
 
 <div align="center">
-  <img src="/assets/images/5.20/multi-head-attention.svg" width="500">
+  <img src="/assets/images/2025/5.20/multi-head-attention.svg" width="500">
   <figcaption>图 10 多头注意力：多个头连结然后线性变换</figcaption>
   <p></p>
 </div>
@@ -410,7 +410,7 @@ $$\begin{split}\begin{aligned}
 尽管Transformer最初是应用于在文本数据上的序列到序列学习，但现在已经推广到各种现代的深度学习中，例如语言、视觉、语音和强化学习领域。
 
 <div align="center">
-  <img src="/assets/images/5.20/transformer.svg" width="500">
+  <img src="/assets/images/2025/5.20/transformer.svg" width="500">
   <figcaption>图 11 Transformer 架构</figcaption>
   <p></p>
 </div>
@@ -443,6 +443,6 @@ torch 自带的 torch.nn.Transformer 类中并不含有位置编码和掩码机�
 
 注意力机制本质上是一个编码的过程，其通过计算注意力权重来计算数据在值空间的编码。现在看来神经网络或者机器学习的终极目标就是寻找一个强大的编码器-解码器，它能够以尽可能少的计算量对数据进行高效编解码，使得信息的损失尽可能少，当然最理想的情况是没有损失。
 
-Transformer 的缺陷就在于其参数量和计算量过大了，但是其高度可并行化的优点是极好的，下一代模型还真不好说是什么样的，但是肯定不会突然蹦出来一个崭新的模型，一定是有多年的积累的。就算是 Transformer，其源头最早甚至能追溯到上个世纪的注意力机制。
+Transformer 的缺陷就在于其推理阶段参数量和计算量过大了，每次加入新词后都需要重新计算注意力，时间复杂度是很高的。但是其高度可并行化的优点是非常利好训练的的。下一代模型还真不好说是什么样的，但是肯定不会突然蹦出来一个崭新的模型，一定是有多年的积累的。就算是 Transformer，其源头最早甚至能追溯到上个世纪的注意力机制。
 
 量化这一块，目前有点想法但不多，或许可以从多头 Q,K,V 矩阵的相似性上考虑裁剪一些冗余的参数，或者对矩阵进行分块以降低参数？再谈吧。
