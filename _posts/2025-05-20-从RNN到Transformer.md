@@ -97,7 +97,7 @@ $$
 
 在评估模型时，我们使用 **困惑度（Perplexity）** 作为指标，其定义如下：
 
-$$\text{exp}\big(-\frac{1}{n}\sum\limits_{t=1}^{n}\log P(x_t|x_{t-1},...,x_1)\big) \tag{3}$$
+$$ \text{exp}\big(-\frac{1}{n}\sum\limits_{t=1}^{n}\log P(x_t|x_{t-1},...,x_1)\big) \tag{3} $$
 
 在最好的情况下困惑度为1，最坏的情况下困惑度为正无穷大，基线是随机预测，困惑度为词表中唯一词元的数量。
 
